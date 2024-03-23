@@ -8,20 +8,12 @@ import RegisterPage from './pages/RegisterPage.jsx';
 import AccountPage from "./pages/AccountPage.jsx";
 
 axios.defaults.baseURL ='http://localhost:4000';
-// axios.defaults.withCredentials = true;
-// axios('http://localhost:4000/login', {
-//   method: 'GET',
-//   withCredentials: true
-// }).then(res => {
-//      console.log(res);
-//    }).catch(err => {
-//      console.log(err.response);
-//    })
-// -- This thing is giving me a CORS error
+axios.defaults.withCredentials = true;
+//This thing is done to get the cookies in request headers 
 
 function App() {
   return (
-    // <UserContextProvider>
+    <UserContextProvider>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<IndexPage />} />
