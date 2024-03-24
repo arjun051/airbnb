@@ -116,13 +116,13 @@ app.post('/upload-by-link', async (req,res) => {
   })
   app.post('/places',async (req,res)=>{
         const {token}  = req.cookies
-        const {title,address ,description,addedPhotos,perks,checkIn,checkOut,extraInfo,maxGuests} = req.body
+        const {title,address ,description,addedPhotos,perks,checkIn,checkOut,price,extraInfo,maxGuests} = req.body
         jwt.verify(token,jwtSecret,{},async (err,userData)=>{
             if(err) throw err;
             const placeDoc = await Place.create({
                 owner:userData.id,
                 title, address, photos:addedPhotos,
-      description, perks, extraInfo,
+      description, perks, extraInfo,price,
       checkIn, checkOut, maxGuests,
             })
             res.json(placeDoc)
@@ -144,7 +144,7 @@ app.post('/upload-by-link', async (req,res) => {
   app.put('/places', async (req,res) => {
     const {token} = req.cookies;
     const {
-      id, title,address,photos:addedPhotos,description,
+      id, title,address,addedPhotos,description,
       perks,extraInfo,checkIn,checkOut,maxGuests,price,
     } = req.body;
     jwt.verify(token, jwtSecret, {}, async (err, userData) => {
