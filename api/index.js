@@ -121,7 +121,7 @@ app.post('/upload-by-link', async (req,res) => {
             if(err) throw err;
             const placeDoc = await Place.create({
                 owner:userData.id,
-                title, address, addedPhotos,
+                title, address, photos:addedPhotos,
       description, perks, extraInfo,
       checkIn, checkOut, maxGuests,
             })
@@ -144,7 +144,7 @@ app.post('/upload-by-link', async (req,res) => {
   app.put('/places', async (req,res) => {
     const {token} = req.cookies;
     const {
-      id, title,address,addedPhotos,description,
+      id, title,address,photos:addedPhotos,description,
       perks,extraInfo,checkIn,checkOut,maxGuests,price,
     } = req.body;
     jwt.verify(token, jwtSecret, {}, async (err, userData) => {
